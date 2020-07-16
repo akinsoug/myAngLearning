@@ -1,0 +1,53 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.body {
+  padding: 20px;
+}
+
+.form-control.ng-touched.ng-invalid {
+  border: 1px solid red;
+}
+.form-control.ng-untouched.ng-pristine.ng-invalid {
+}
+.form-control.ng-pristine.ng-invalid.ng-touched {
+}
+.myBrd-radius {
+  background-color: rgb(213, 243, 213);
+  border-top-right-radius: 3em;
+  width: 500px;
+  border-bottom-left-radius: 3em;
+  width: 500px;
+  padding: 10px;
+  border: 0.2px solid blue;
+}
+.imageClass {
+  width: 7rem;
+  height: 7rem;
+}
+.vertical-align {
+  display: flex;
+  align-items: center;
+}
+.inputVariableColor {
+  color: tomato;
+  font-size: smaller;
+  font-weight: bolder;
+}
+.inputVariableResolteColor {
+  color: rgb(224, 120, 102);
+  font-weight: normal;
+}
+
+.createempgreenborder {
+  border: 0.3px solid green;
+}
+.listemployeeavatarr {
+  width: 7em;
+  height: 5em;
+  border: 1px solid black;
+  margin: 30px;
+  position: relative;
+  background-image: url("assets/images/employeesImg/defaultpicture.PNG");
+}

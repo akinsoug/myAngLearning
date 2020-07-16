@@ -1,0 +1,92 @@
+<div class="container bg-berge ">
+    <h3 style="text-align: center;">
+        Home Component
+    </h3>
+    
+    <div class="">
+        <mat-checkbox #showDetails [value]="" [(checked)]="isChecked" (Change)="onChange($event)">
+            Show details
+        </mat-checkbox>
+        <div class="" *ngIf="showDetails.checked">
+            Some details
+        </div>
+    </div>
+
+    <div class="">
+        <!-- the [checked]="isChecked" on the Female button is to checked the Green color on load -->
+        <mat-radio-group >
+            <mat-radio-button value="1">Male </mat-radio-button>&nbsp;
+            <mat-radio-button value="0" [checked]="isChecked"> Female</mat-radio-button>
+        </mat-radio-group>
+    </div>
+    <br>
+    <div class="">
+        <!-- the value="2" on the radio group is to checked the Green color on load -->
+        <mat-radio-group  value="2">
+            <mat-radio-button value="1">Blue</mat-radio-button>&nbsp;
+            <mat-radio-button value="2">Green</mat-radio-button>
+        </mat-radio-group>
+    </div>
+    <br>
+    <div class="">
+        <mat-form-field>
+            <mat-label>Favorite food</mat-label>
+            <mat-select [(ngModel)]="preselectFood">
+                <mat-option *ngFor="let food of myFoods" [value]="food.id">
+                {{food.name}}
+                </mat-option>
+            </mat-select>
+            <!-- <mat-select>
+                <mat-option  [value]="">                </mat-option>
+            </mat-select> -->
+
+        </mat-form-field>
+    </div>
+    <div class="">
+        <form class="example-form">
+            <!-- <mat-input-container> -->
+                <mat-form-field class="example-full-width">
+                <mat-label>Favorite food</mat-label>
+                <input matInput placeholder="Ex. Pizza" value="Sushi">
+                </mat-form-field>
+            <!-- </mat-input-container> -->
+            &nbsp; 
+
+            <mat-form-field class="example-full-width">
+                <mat-label>Telephone</mat-label>
+                <span matPrefix>+1 &nbsp;</span>
+                <input type="tel" matInput placeholder="555-555-1234">
+                <mat-icon matSuffix>mode_edit</mat-icon>
+            </mat-form-field>  
+            <br>
+            <mat-form-field class="example-full-width">
+                <mat-label>EmailUsername</mat-label>
+                <input matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+                        placeholder="Ex. pat@example.com" required
+                >
+                <span matPrefix style="color: cornflowerblue; font-size: 15px;">admin.</span>
+                <span matSuffix>@student.ucps.k12.nc.us</span>
+                <mat-hint>Errors appear instantly!</mat-hint>
+
+                <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                    Please enter a valid email address
+                </mat-error>
+                <mat-error *ngIf="emailFormControl.hasError('required')">
+                    Email is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+            <br><br>
+            <mat-form-field class="example-full-width myBrd-radius" 
+                            
+            >
+
+              <mat-label>Leave a comment</mat-label>
+              <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+            </mat-form-field>
+
+            <!-- <form class="example-form"></form> -->
+              
+        </form>
+    </div>
+    
+</div>

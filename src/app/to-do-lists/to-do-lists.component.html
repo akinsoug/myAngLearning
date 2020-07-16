@@ -1,0 +1,203 @@
+<div class="card offset-1 col-10" style="background-color: rgb(212, 230, 241);">
+  <div class="card-header bg-primary text-center">
+    <h2>
+      To Do List
+    </h2>
+    <br />
+
+    <form action=""></form>
+    <input
+      type="text"
+      autofocus
+      #toDoDescriptionn
+      class="text-center form-group"
+      width="100%"
+      [placeholder]="myPlaceHolder"
+      (keyup.enter)="addToDoList(toDoDescriptionn.value)"
+      [(value)]="addToDoInputValue"
+      required
+    />
+    &nbsp;
+    <input
+      *ngIf="addToDoInputValue != ''"
+      type="button"
+      value="Clear"
+      (click)="toDoDescriptionn.value = ''"
+    />
+    <br />
+    <span
+      *ngIf="addToDoInputValue == ''"
+      style="border-color: orangered; background-color: papayawhip; color: red;"
+    >
+      {{ toDoInputMssg }}
+    </span>
+    <br />
+    <button
+      type="submit"
+      style="min-height: 30px;"
+      class="btn-success btn-small text-white text-left"
+      (click)="addToDoList(toDoDescriptionn.value)"
+    >
+      Add Todo
+    </button>
+  </div>
+
+  <div class="card-body text-center" [ngClass]="setClasses()">
+    <h3>---</h3>
+    <table class="table table-bordered text-center">
+      <thead>
+        <tr>
+          <th>Done</th>
+          <th>Number</th>
+          <th>ToDo</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+
+      <tbody *ngFor="let todo of toDoLists; let i = index">
+        <tr>
+          <input
+            @fadeAnomation
+            (change)="onToggle(todo)"
+            type="checkbox"
+            unchecked
+            id="toggleId"
+          />.is-completed
+
+          <td>{{ i + 1 }}</td>
+          <td>{{ todo.description.toUpperCase() }}</td>
+
+          <td class="text-justify">
+            <button
+              *ngIf="editingRow != i"
+              (click)="editingRow = i"
+              class="btn btn-dark btn-sm"
+            >
+              Edit
+            </button>
+
+            <div *ngIf="editingRow == i">
+              <input
+                autofocus
+                #newDescription
+                type="text"
+                value="{{ todo.description }}"
+                (keydown.esc)="editingRow = -1"
+                (keyup.enter)="editItemInList(i, newDescription.value)"
+              />
+              <button (click)="editItemInList(i, newDescription.value)">
+                Save
+              </button>
+            </div>
+          </td>
+
+          <td>
+            <button (click)="removeFromList(i)" class="btn btn-danger btn-sm">
+              Del
+            </button>
+          </td>
+        </tr>
+
+        <tr>
+          <!-- <td>1</td>
+                    <td>item2</td>
+                    <td class="text-justify"><button>Edit2</button></td>
+                    <td><button>Del2</button></td> -->
+        </tr>
+      </tbody>
+    </table>
+
+    <button
+      class="btn btn-primary"
+      *ngIf="toDoLists.length != 0"
+      id="btnclrall"
+      (click)="toDoLists.length = 0"
+    >
+      Clear All
+    </button>
+
+    <br />
+    <br />
+    <input
+      type="text"
+      #testInputValue
+      (keyup.enter)="
+        testInputValueMsg = testInputValue.value;
+        isTestMeClicked = !isTestMeClicked
+      "
+    />
+    &nbsp;
+    <button
+      type="submit"
+      style="min-height: 30px;"
+      class="btn-info btn-small text-white text-left"
+      (click)="
+        testInputValueMsg = testInputValue.value;
+        isTestMeClicked = !isTestMeClicked
+      "
+    >
+      Test Me
+    </button>
+    &nbsp;
+    <button
+      type="submit"
+      style="min-height: 30px;"
+      class="btn-info btn-small text-white text-left"
+      (click)="testInputValue.value = ''; testInputValueMsg = ''"
+    >
+      Clean
+    </button>
+    <br />
+    <!-- {{testInputValueMsg}}  -->
+    <br />
+    <span
+      *ngIf="testInputValueMsg == '' && isTestMeClicked"
+      style="border-color: orangered; background-color: papayawhip; color: red;"
+    >
+      Input is required
+    </span>
+    <span
+      style="
+        border-color: orangered;
+        background-color: rgb(167, 236, 167);
+        color: green;
+        font-size: large;
+        font-weight: bold;
+      "
+    >
+      {{ testInputValueMsg | uppercase }}
+    </span>
+  </div>
+
+  <br />
+  <br />
+  <!-- <div
+    class="form-group"
+    [class.has-err]="tesInputControl.invalid && tesInputControl.touched"
+    [class.has-success]="tesInputControl.invalid"
+  > -->
+  <div class="form-group">
+    <label for="testInput"></label>
+
+    <input
+      required
+      id="testInput"
+      name="testInput"
+      [(ngModel)]="testInputValueMsgTest"
+      type="text"
+      class=""
+      #tesInputControl="ngModel"
+    />
+    <span
+      class="help-block"
+      *ngIf="tesInputControl.invalid && tesInputControl.touched"
+    >
+      Input is required22
+    </span>
+    {{ testInputValueMsgTest | uppercase }}
+  </div>
+
+  <div>Touched: {{ tesInputControl.touched }}</div>
+  <div>UnTouched: {{ tesInputControl.untouched }}</div>
+</div>

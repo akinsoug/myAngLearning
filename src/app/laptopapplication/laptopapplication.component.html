@@ -1,0 +1,91 @@
+<div class="row">
+    <div class="col-md-5 offset-md-4">
+        <div class="card">
+            <div class="card-header bg-primary text-center laptop-heading">
+                Register for a Laptop
+            </div>
+            <div class="card-body">
+                <form (ngSubmit)="register()"
+                        
+                >
+                    <div class="form-group">
+
+                        <div class="form-group">
+                            <label for="employeeName"> Employee Name</label>
+                            <input required type="text" name="employeeName" id="employeeName" class="form-control"
+                                    [(ngModel)]="employeeNameTs" autocomplete=""
+                                    #aaaaa="ngModel" (change)="log(aaaaa)"
+                            >
+                            <div class="alert alert-danger" *ngIf="aaaaa.touched && !aaaaa.valid">
+                                Name is required!
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for=""> Email Id</label>
+                            <input type="email" name="employeeImail" id="" class="form-control"
+                                    [(ngModel)]="employeeImailTs" 
+                            >
+                        </div>
+                        <div class="form-group">
+                            <label for=""> Date of Birth Id</label>
+                            <input type="date" name="employeeBoB" id="" class="form-control"
+                                    [(ngModel)]="employeeBobTs" 
+                            >
+                        </div>
+                        <div class="form-group">
+                            <label for=""> Laptop</label>
+                            <input type="text" name="laptopMake" id="" class="form-control"
+                                    [(ngModel)]="laptopMakeTs" 
+                            >
+                        </div>
+                        <div class="form-group">
+                            <label for=""> Phone</label>
+                            <input required minlength="10" pattern="[0-9]" type="text" name="employeePhone" id="" class="form-control"
+                                    [(ngModel)]="employeePhoneTs" 
+                                    #phoneNumb="ngModel" 
+                            >
+                            <div class="alert alert-danger" *ngIf="phoneNumb.touched && !phoneNumb.valid">
+                                <div class="" *ngIf="phoneNumb.errors.required">
+                                    phone number is required
+                                </div>
+                                 <div class=""  *ngIf="phoneNumb.errors.minlength">
+                                     Phone number must be {{phoneNumb.errors.minlength.requiredLength}} digit long!
+                                 </div>
+                                 <!-- <div class=""  *ngIf="phoneNumb.errors.pattern">
+                                     Phone number does not much the pattern!
+                                 </div> -->
+                            </div>
+                        </div>
+
+                        <div class="row ">
+                            <div class="offset-lg-3 col-lg-6 offset-mg-2 col-md-8 offset-xs-1 col-xs-10"> 
+                                <label for=""> Rangers</label>
+                                <select name="ranger" id="" class="custom-select form-control"
+                                        [(ngModel)]="aRanger" 
+                                >
+                                    <option selected value=""> Choose a Ranger Color</option>
+                                    <option  value="Red"> Red</option>
+                                    <option  value=""> Blued</option>
+                                    <option  value=""> Green</option>
+                                    <option  value=""> Pink</option>
+                                    <option  value=""> Yellow</option>
+                                    <option  value="All"> View All Rangers</option>
+                                </select>
+                            </div>
+                            
+                        </div>
+
+                        
+                        <div class="text-left">
+                            <br>
+                           <button class="btn btn-primary" type="submit">
+                               Register
+                           </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

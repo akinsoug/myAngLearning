@@ -1,0 +1,64 @@
+.MyBodyClass {
+  background-image: linear-gradient(
+    to right,
+    #5689d4,
+    #0091e3,
+    #00bac8,
+    #f1f6e5
+  );
+}
+/* 
+.div11 {
+  border: 0.5em solid black;
+  background-color: red;
+  height: 10em;
+  width: 10em;
+  position: relative;
+  animation-name: animate;
+  animation-direction: 4s;
+  animation-delay: 2s;
+}
+*/
+.div1:hover {
+  transform: translate(1em, 1em);
+}
+
+.div1 {
+  width: 5em;
+  height: 5em;
+  background-color: green;
+  position: relative;
+  animation-name: animate;
+  animation-direction: 4s;
+  animation-delay: 2s;
+  border: 0.5em solid black;
+  animation-iteration-count: 3;
+}
+/* @keyframes animate not working */
+@keyframes animate {
+  0% {
+    background-color: red;
+    left: 0px;
+    top: 0px;
+  }
+  25% {
+    background-color: yellow;
+    left: 30px;
+    top: 0px;
+  }
+  50% {
+    background-color: green;
+    left: 300px;
+    top: 300px;
+  }
+  75% {
+    background-color: blue;
+    left: 0px;
+    top: 300px;
+  }
+  100% {
+    background-color: red;
+    left: 0px;
+    top: 0px;
+  }
+}

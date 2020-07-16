@@ -1,0 +1,86 @@
+<div class="container">
+  <h2 style="text-align: center;">
+    Employee List
+  </h2>
+  <nav
+    class="navbar navbar-default"
+    style="background-color: cornsilk; margin: 2em;"
+  >
+    <ul class="nav navbar-nav">
+      <li routerLinkActive="active current">
+        <a routerLink="createemployee"> Create Employees</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="card border-dark" *ngFor="let emp of employees">
+    <div class="card-header bg-info">
+      <h4 class="card-title">{{ emp.empName }}</h4>
+    </div>
+    <div class="card-body">
+      <div class="col-10">
+        <div class="row vertical-align">
+          <div class="clo-4">
+            <!--   {{
+              emp.empPhotoPath == "null"
+                ? "imgPth=emp.empPhotoPath"
+                : "imgPth='assets/images/employeesImg/defaultpicture.PNG'"
+            }} -->
+            <img
+              #imgPth
+              class="imageClass"
+              [src]="emp.empPhotoPath"
+              alt="img"
+            />
+          </div>
+          <div class="col-8">
+            <div class="row">
+              <div class="col-6">
+                Gender:
+              </div>
+              <div class="col-6 bg-light">{{ emp.empGender }}</div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                Date of Birth:
+              </div>
+              <div class="col-6 bg-light">
+                {{ emp.empDateOfBirth | date }}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                Contact Preference:
+              </div>
+              <div class="col-6 bg-light">{{ emp.empConctPrefrc }}</div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                Phone:
+              </div>
+              <div class="col-6 bg-light">{{ emp.empPhoneNumb }}</div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                Email:
+              </div>
+              <div class="col-6 bg-light">{{ emp.empEmail }}</div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                Department:
+              </div>
+              <div class="col-6 bg-light">{{ emp.empDepartment }}</div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                Is Active:
+              </div>
+              <div class="col-6 bg-light">{{ emp.empIsActive }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

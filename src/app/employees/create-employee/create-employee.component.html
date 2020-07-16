@@ -1,0 +1,418 @@
+<div class="container">
+  <h2 style="text-align: center;">
+    Create Employee
+  </h2>
+  <nav
+    class="navbar navbar-default"
+    style="background-color: cornsilk; margin: 2em;"
+  >
+    <ul class="nav navbar-nav">
+      <li><a routerLink="employees">Employees</a></li>
+    </ul>
+  </nav>
+  <table
+    border="1px"
+    style="
+      border-collapse: collapse;
+      table-layout: fixed;
+      background-color: rgb(230, 247, 213);
+    "
+  >
+    <tr>
+      <td colspan="2" style="width: 100%;">
+        <h3 style="text-align: center; font-weight: bold; color: chartreuse;">
+          Tables in Table Test
+        </h3>
+      </td>
+    </tr>
+    <!-- ------- -->
+    <tr>
+      <td>
+        <table
+          border="1px"
+          style="
+            border-collapse: collapse;
+            font-family: Arial;
+            table-layout: fixed;
+          "
+        >
+          <tr style="background-color: rgb(139, 221, 248); font-weight: bold;">
+            <td
+              colspan="3"
+              style="padding: 0.5em; white-space: nowrap; width: 100%;"
+            >
+              <h4
+                style="text-align: center; font-weight: bold; color: fuchsia;"
+              >
+                Full Name Field
+              </h4>
+            </td>
+          </tr>
+          <!-- ------- -->
+          <tr style="background-color: rgb(212, 238, 248); font-weight: bold;">
+            <td style="padding: 1em; white-space: nowrap; width: 33%;">
+              <div class="inputVariableColor">
+                touched:
+                <span class="inputVariableResolteColor">
+                  {{ empName.touched }} </span
+                ><br />
+                untouched:
+                <span class="inputVariableResolteColor">
+                  {{ empName.untouched }}
+                </span>
+              </div>
+            </td>
+            <td style="padding: 1em; white-space: nowrap; width: 33%;">
+              <div class="inputVariableColor">
+                pristine:
+                <span class="inputVariableResolteColor">
+                  {{ empName.pristine }} </span
+                ><br />
+                dirty:
+                <span class="inputVariableResolteColor">
+                  {{ empName.dirty }}
+                </span>
+              </div>
+            </td>
+            <td style="padding: 1em; white-space: nowrap; width: 33%;">
+              <div class="inputVariableColor">
+                valid:
+                <span class="inputVariableResolteColor">
+                  {{ empName.valid }} </span
+                ><br />
+                invalid:
+                <span class="inputVariableResolteColor">
+                  {{ empName.invalid }}
+                </span>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </td>
+      <td>
+        <table
+          border="1px"
+          style="
+            border-collapse: collapse;
+            font-family: Arial;
+            table-layout: fixed;
+          "
+        >
+          <tr style="background-color: rgb(139, 221, 248); font-weight: bold;">
+            <td
+              colspan="3"
+              style="padding: 0.5em; white-space: nowrap; width: 100%;"
+            >
+              <h4 style="text-align: center; font-weight: bold; color: blue;">
+                Employee Form
+              </h4>
+            </td>
+          </tr>
+          <tr style="background-color: rgb(212, 238, 248); font-weight: bold;">
+            <td style="padding: 1em; white-space: nowrap; width: 33%;">
+              <div class="inputVariableColor">
+                touched:
+                <span class="inputVariableResolteColor">
+                  {{ employeeForm.touched }} </span
+                ><br />
+                untouched:
+                <span class="inputVariableResolteColor">
+                  {{ employeeForm.untouched }}
+                </span>
+              </div>
+            </td>
+            <td style="padding: 1em; white-space: nowrap; width: 33%;">
+              <div class="inputVariableColor">
+                pristine:
+                <span class="inputVariableResolteColor">
+                  {{ employeeForm.pristine }} </span
+                ><br />
+                dirty:
+                <span class="inputVariableResolteColor">
+                  {{ employeeForm.dirty }}
+                </span>
+              </div>
+            </td>
+            <td style="padding: 1em; white-space: nowrap; width: 33%;">
+              <div class="inputVariableColor">
+                valid:
+                <span class="inputVariableResolteColor">
+                  {{ employeeForm.valid }} </span
+                ><br />
+                invalid:
+                <span class="inputVariableResolteColor">
+                  {{ employeeForm.invalid }}
+                </span>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  <br />
+  <!-- ngNativeValidate -->
+  <!-- <form #employeeForm="ngForm" action="" (ngSubmit)="saveEmployeeForm(employeeForm)"> -->
+  <form
+    #employeeForm="ngForm"
+    action=""
+    (ngSubmit)="saveEmployeeForm(createEmployees)"
+  >
+    <div class="card border-dark">
+      <div class="card-header bg-info">
+        <h4 class="card-title">Create Employee</h4>
+      </div>
+      <!--  [class.has-error]="empNameVbl.invalid && empNameVbl.touched"
+          [class.has-success]="empNameVbl.valid"
+        not working
+
+
+        *ngIf="phoneNumb.errors.required
+        6
+       -->
+      <div class="card-body">
+        <div
+          class="form-group"
+          [class.has-error]="empName.invalid && empName.touched"
+          [class.has-success]="empName.valid"
+        >
+          <label for="empName" class="control-label">Full Name</label>
+          <input
+            required
+            type="text"
+            id="empName"
+            name="empName"
+            [(ngModel)]="createEmployees.empName"
+            #empName="ngModel"
+            class="form-control"
+          />
+          <span
+            class="help-block"
+            style="color: red;"
+            *ngIf="empName.invalid && empName.touched"
+          >
+            Full Name is <strong>required</strong>
+          </span>
+          <!-- 
+          <div
+            class="alert alert-danger"
+            *ngIf="empName.touched && !empName.valid"
+          >
+            Full Name is required!
+          </div> -->
+        </div>
+        <div
+          class="form-group"
+          [class.has-error]="empEmail.invalid && empEmail.touched"
+          [class.has-success]="empEmail.valid"
+        >
+          <label for="empEmail" class="control-label">Email</label>
+          <!-- pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" -->
+          <input
+            required
+            email
+            type="text"
+            id="empEmail"
+            name="empEmail"
+            [(ngModel)]="createEmployees.empEmail"
+            #empEmail="ngModel"
+            class="form-control"
+          />
+          <span
+            class="help-block"
+            style="color: red;"
+            *ngIf="
+              empEmail.errors && empEmail.errors.required && empEmail.touched
+            "
+          >
+            Email is <strong>Required</strong>
+          </span>
+          <span
+            class="help-block"
+            style="color: red;"
+            *ngIf="empEmail.errors?.email"
+          >
+            Email is <strong>Invalid</strong>
+          </span>
+        </div>
+        <div class="form-group">
+          <label for="empPhoneNumb">Phone Number</label>
+          <input
+            required
+            pattern="[0-9]"
+            type="text"
+            id="phonN"
+            name="empPhoneNumb"
+            [(ngModel)]="createEmployees.empPhoneNumb"
+            #empPhoneNumb="ngModel"
+            class="form-control"
+          />
+          <span
+            class="help-block"
+            style="color: red;"
+            *ngIf="empPhoneNumb.errors?.required && empPhoneNumb.touched"
+          >
+            Phone is <strong>Required</strong>
+          </span>
+          <span
+            class="help-block"
+            style="color: red;"
+            *ngIf="empPhoneNumb.errors?.pattern && empPhoneNumb.touched"
+          >
+            Phone's wrong <strong>pattern</strong>
+          </span>
+        </div>
+        <div class="form-group">
+          <label for="">Contact Prefernce</label>
+          <div class="form-control">
+            <label class="radio-inline">
+              <input
+                type="radio"
+                value="mail"
+                name="contactPre"
+                [(ngModel)]="createEmployees.empConctPrefrc"
+              />
+              Email </label
+            >&nbsp;
+            <label class="radio-inline">
+              <input
+                type="radio"
+                value="phone"
+                name="contactPre"
+                [(ngModel)]="createEmployees.empConctPrefrc"
+              />
+              Phone
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="">Gender</label>
+          <div class="form-control">
+            <label class="radio-inline">
+              <input
+                type="radio"
+                value="male"
+                name="gender"
+                [(ngModel)]="createEmployees.empGender"
+              />
+              Male
+            </label>
+            &nbsp;
+            <label class="radio-inline">
+              <input
+                type="radio"
+                value="female"
+                name="gender"
+                [(ngModel)]="createEmployees.empGender"
+              />
+              Female
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-control">
+            <label class="checkbox-inline">
+              <input
+                type="checkbox"
+                name="isActive"
+                [(ngModel)]="createEmployees.empIsActive"
+              />
+              Is Active
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="department">
+            Department
+          </label>
+          <select
+            id="department"
+            type=""
+            name="department"
+            [(ngModel)]="createEmployees.empDepartment"
+            class="form-control"
+          >
+            <option *ngFor="let dept of departments" [value]="dept.deptId">
+              {{ dept.deptName }}
+            </option>
+          </select>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-5">
+            <label for="dateOB">Date of Birth</label>
+            <input
+              type="text"
+              id="dateOB"
+              name="dateOB"
+              [(ngModel)]="createEmployees.empDateOfBirth"
+              placement="right"
+              class="form-control"
+              bsDatepicker
+              [bsConfig]="datePickerConfig"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="photoPath">Photo Path</label>
+          <input
+            type="text"
+            id="photoPath"
+            name="photoPath"
+            [(ngModel)]="createEmployees.empPhotoPath"
+            class="form-control"
+          />
+        </div>
+
+        <div class="form-group" *ngIf="previewPhot">
+          <button (click)="togglePhotoPreview()" class="btn btn-primary">
+            Hide Preview
+          </button>
+        </div>
+        <div class="form-group" *ngIf="!previewPhot">
+          <button (click)="togglePhotoPreview()" class="btn btn-primary">
+            Show Preview
+          </button>
+        </div>
+        <div class="">
+          <button (click)="togglePhotoPreview()" class="btn btn-info">
+            {{ !previewPhot ? "if" : "else" }}
+          </button>
+          if true -> if else -> else {{ !previewPhot ? "if" : "else" }} View
+          Example
+        </div>
+        <!--            93 -->
+        <div class="form-group">
+          <img
+            style="border: 1px solid darkturquoise;"
+            [src]="createEmployees.empPhotoPath"
+            height="100em"
+            width="100em"
+            alt=""
+            *ngIf="previewPhot"
+          />
+        </div>
+      </div>
+      <!--  -->
+      <div class="card-footer">
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="employeeForm.invalid"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <p style="color: skyblue;">
+    Angular Generated Form Model: {{ employeeForm.value | json }}
+  </p>
+  <p style="color: skyblue; font-size: smaller;">
+    Our Employee Model: {{ createEmployees | json }}
+  </p>
+  <br />
+  <br />
+  <br />
+</div>

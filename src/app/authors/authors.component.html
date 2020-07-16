@@ -1,0 +1,141 @@
+<div class="container bg-berge">
+  <h2 style="text-align: center;">
+    {{ title }}
+  </h2>
+  <div style="background-color: cornsilk; margin: 2em;">
+    <ul class="nav nav-pills">
+      <li
+        [class.active]="viewMode == 'list'"
+        style="margin-right: 0.5em; font-size: 0.8rem;"
+      >
+        <a
+          (click)="changeViewMode('list')"
+          style="background-color: rgb(236, 225, 178);"
+          >List View</a
+        >
+      </li>
+      <li
+        [class.active]="viewMode == 'map'"
+        style="margin-right: 0.5em; font-size: 0.8rem;"
+      >
+        <a
+          (click)="viewMode = 'map'"
+          style="background-color: rgb(236, 225, 178);"
+          >Map View</a
+        >
+      </li>
+    </ul>
+  </div>
+  <div class="">
+    <input
+      required
+      #addAthor
+      placeholder="Enter new author"
+      type="text"
+      (keyup.enter)="onAdd(addAthor.value)"
+    />
+    <button
+      (click)="onAdd(addAthor.value)"
+      class="btn btn-primary"
+      style="margin-left: 0.1em; padding: 0.2em;"
+    >
+      Add
+    </button>
+    <div
+      *ngIf="addAthor.value == ''"
+      style="
+        border-color: orangered;
+        background-color: papayawhip;
+        color: red;
+        margin-left: 1em;
+        width: 40%;
+      "
+    >
+      {{ inputErrMsg }}
+    </div>
+  </div>
+
+  <div [ngSwitch]="viewMode" class="" style="margin-top: 1em;">
+    <div *ngSwitchCase="'list'">
+      <h4 style="color: darkorange;">{{ authors.length }} Authors</h4>
+      <table>
+        <thead>
+          <tr></tr>
+          <tr></tr>
+          <tr></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+      <ul>
+        <!-- simple if statement -->
+        <div class="" *ngIf="authors.length > 0">
+          <li *ngFor="let author of authors; index as i; even as isEven">
+            {{ i }} - {{ author }} <span *ngIf="isEven"> (EVEN)</span>
+            <button class="btn-info" (click)="onRemove(author)">Remove</button>
+            <button
+              class="btn-info"
+              (click)="onChange(author, author + 'Update')"
+            >
+              Update
+            </button>
+          </li>
+        </div>
+        <li *ngIf="noAutho()">
+          <h5>No none author yet</h5>
+        </li>
+      </ul>
+      <div class="" style="text-align: center; color: blueviolet;">
+        <h4>{{ authors.length }} Authors 1 ng-template</h4>
+        <!-- if else statement -->
+        <div class="" *ngIf="authors.length > 0; else noAuthors">
+          <li *ngFor="let author of authors">
+            {{ author }}
+          </li>
+        </div>
+        <ng-template #noAuthors>
+          <h5>No none author yet</h5>
+        </ng-template>
+      </div>
+      <div class="" style="color: blue;">
+        <h4>{{ authors.length }} Authors 2 ng-template s</h4>
+        <!-- another clear way of  if else statement -->
+        <div
+          class=""
+          *ngIf="authors.length > 0; then authorList; else noAuthors"
+        ></div>
+        <ng-template #authorList>
+          <li *ngFor="let author of authors">
+            {{ author }}
+          </li>
+        </ng-template>
+        <ng-template #noAuthors>
+          <h5>No none author yet</h5>
+        </ng-template>
+      </div>
+      <div class="" style="text-align: center;">
+        <h4>{{ authors.length }} Authors [hidden]</h4>
+        <!-- if else statement with [hidden] attribut -->
+        <div [hidden]="authors.length == 0">
+          <li *ngFor="let author of authors">
+            {{ author }}
+          </li>
+        </div>
+        <div [hidden]="authors.length > 0">
+          <h5>No none author yet</h5>
+        </div>
+      </div>
+    </div>
+    <div *ngSwitchCase="'map'" class="">
+      Map View Content
+    </div>
+    <div *ngSwitchDefault>
+      Otherwise View Content
+    </div>
+  </div>
+</div>
